@@ -1,4 +1,4 @@
-import {Form, Input, Label, Switch, XStack} from 'tamagui';
+import { Form, Input, Label, Switch, XStack } from 'tamagui';
 
 const Login = () => {
   return (

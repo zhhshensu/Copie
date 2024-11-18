@@ -6,9 +6,9 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import type { PropsWithChildren } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import '@tamagui/core/reset.css';
 import {
   ScrollView,
@@ -18,17 +18,16 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-// import {TamaguiProvider} from 'tamagui';
+// import { TamaguiProvider } from 'tamagui';
 // import config from './tamagui.config';
 
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import {Home} from './app/pages/index';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+// import { Home, Login, About } from './app/pages/index';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const Stack = createNativeStackNavigator();
+import { PaperProvider } from 'react-native-paper';
+import BottomTabs from './app/navigation/BottomTabs';
+// const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,20 +37,22 @@ function App(): React.JSX.Element {
   };
 
   return (
-    // <TamaguiProvider config={config}>
     <SafeAreaProvider>
-      <NavigationContainer>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home} />
-          {/* <Stack.Screen name="Login" component={Login} /> */}
-        </Stack.Navigator>
-      </NavigationContainer>
+      <PaperProvider>
+        <NavigationContainer>
+          <BottomTabs />
+          {/* <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={backgroundStyle.backgroundColor}
+          />
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="About" component={About} />
+            <Stack.Screen name="Login" component={Login} />
+          </Stack.Navigator> */}
+        </NavigationContainer>
+      </PaperProvider>
     </SafeAreaProvider>
-    // </TamaguiProvider>
   );
 }
 
